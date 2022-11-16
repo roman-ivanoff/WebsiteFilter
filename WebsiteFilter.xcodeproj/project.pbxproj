@@ -11,6 +11,7 @@
 		FD5AF04F292575C500062C19 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5AF04E292575C500062C19 /* ViewController.swift */; };
 		FD5AF054292575C800062C19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5AF053292575C700062C19 /* Assets.xcassets */; };
 		FD5AF057292575C800062C19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5AF055292575C800062C19 /* LaunchScreen.storyboard */; };
+		FD5AF062292579B500062C19 /* LinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5AF061292579B500062C19 /* LinkModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		FD5AF053292575C700062C19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD5AF056292575C800062C19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD5AF058292575C800062C19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FD5AF061292579B500062C19 /* LinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,8 @@
 		FD5AF049292575C500062C19 /* WebsiteFilter */ = {
 			isa = PBXGroup;
 			children = (
+				FD5AF060292579A800062C19 /* Extensions */,
+				FD5AF05F2925799D00062C19 /* Models */,
 				FD5AF05E2925769E00062C19 /* Supporting Files */,
 				FD5AF04E292575C500062C19 /* ViewController.swift */,
 				FD5AF04A292575C500062C19 /* AppDelegate.swift */,
@@ -67,6 +71,21 @@
 				FD5AF055292575C800062C19 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FD5AF05F2925799D00062C19 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FD5AF060292579A800062C19 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FD5AF061292579B500062C19 /* LinkModel.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD5AF062292579B500062C19 /* LinkModel.swift in Sources */,
 				FD5AF04F292575C500062C19 /* ViewController.swift in Sources */,
 				FD5AF04B292575C500062C19 /* AppDelegate.swift in Sources */,
 			);

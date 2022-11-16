@@ -12,6 +12,7 @@
 		FD5AF054292575C800062C19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5AF053292575C700062C19 /* Assets.xcassets */; };
 		FD5AF057292575C800062C19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5AF055292575C800062C19 /* LaunchScreen.storyboard */; };
 		FD5AF062292579B500062C19 /* LinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5AF061292579B500062C19 /* LinkModel.swift */; };
+		FD5AF06529257AA200062C19 /* UIView+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5AF06429257AA200062C19 /* UIView+Configuration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		FD5AF056292575C800062C19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FD5AF058292575C800062C19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD5AF061292579B500062C19 /* LinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkModel.swift; sourceTree = "<group>"; };
+		FD5AF06429257AA200062C19 /* UIView+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Configuration.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +78,7 @@
 		FD5AF05F2925799D00062C19 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FD5AF061292579B500062C19 /* LinkModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -83,7 +86,7 @@
 		FD5AF060292579A800062C19 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				FD5AF061292579B500062C19 /* LinkModel.swift */,
+				FD5AF06429257AA200062C19 /* UIView+Configuration.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD5AF062292579B500062C19 /* LinkModel.swift in Sources */,
+				FD5AF06529257AA200062C19 /* UIView+Configuration.swift in Sources */,
 				FD5AF04F292575C500062C19 /* ViewController.swift in Sources */,
 				FD5AF04B292575C500062C19 /* AppDelegate.swift in Sources */,
 			);

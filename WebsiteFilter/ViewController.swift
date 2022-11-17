@@ -9,9 +9,10 @@ import UIKit
 
 class ViewController: UIViewController {
     // MARK: - UIViews
-    var linkTextField: UITextField!
+    var linkTextField: LinkTextField!
 
     // MARK: - Properties
+    var filterWords: [String] = []
 
     // MARK: - Lifecycle methods
     override func viewDidLoad() {
@@ -19,8 +20,16 @@ class ViewController: UIViewController {
 
         view.backgroundColor = .white
 
+        if #available(iOS 13, *) {
+            view.backgroundColor = .systemBackground
+        } else {
+            view.backgroundColor = .white
+        }
+
         setupNavigatorController()
         createAndSetupLinkTextField()
+        addSubviewsToView()
+        setAnchors()
     }
 
     // MARK: - Overrided methods
@@ -39,24 +48,24 @@ class ViewController: UIViewController {
     }
 
     @objc func addFilterAction() {
-        print("add filter")
+        showTextFieldAlert()
     }
 
     @objc func showFilterWords() {
-        print("show filter words")
+        print(filterWords)
     }
 
     // MARK: - Custom methods
     private func createAndSetupLinkTextField() {
-        linkTextField = UITextField(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 44))
+        linkTextField = LinkTextField(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 44))
         linkTextField.delegate = self
-        linkTextField.borderStyle = .roundedRect
-        linkTextField.font = UIFont.boldSystemFont(ofSize: 15)
-        linkTextField.keyboardType = .URL
-        linkTextField.placeholder = "Enter URL"
-        linkTextField.returnKeyType = .go
-        view.addSubview(linkTextField)
+    }
 
+    private func addSubviewsToView() {
+        view.addSubview(linkTextField)
+    }
+
+    private func setAnchors() {
         linkTextField.anchor(
             top: view.layoutMarginsGuide.topAnchor,
             leading: view.layoutMarginsGuide.leadingAnchor,
@@ -67,7 +76,13 @@ class ViewController: UIViewController {
 
     private func setupNavigatorController() {
         navigationController?.isToolbarHidden = false
-        title = "Website Filter"
+        title = NSLocalizedString("website_filter", comment: "")
+
+        if #available(iOS 13, *) {
+            navigationController?.toolbar.tintColor = .systemIndigo
+        } else {
+            navigationController?.toolbar.tintColor = .black
+        }
 
         var items: [UIBarButtonItem] = []
 
@@ -126,6 +141,39 @@ class ViewController: UIViewController {
         dialogMessage.addAction(okAction)
         present(dialogMessage, animated: true)
     }
+
+    private func showTextFieldAlert() {
+        let alertController = UIAlertController(
+            title: NSLocalizedString("add_filter_word", comment: ""),
+            message: "", preferredStyle: .alert
+        )
+        alertController.addTextField { (textField: UITextField!) -> Void in
+            textField.placeholder = NSLocalizedString("enter_filter_word", comment: "")
+        }
+
+        let addAction = UIAlertAction(
+            title: NSLocalizedString("add", comment: ""),
+            style: .default
+        ) { _ in
+            let textField = alertController.textFields
+            if let word = textField?[0].text {
+                self.addFilterWord(word)
+            }
+        }
+
+        let cancelAction = UIAlertAction(title: NSLocalizedString("cancel", comment: ""), style: .cancel)
+
+        alertController.addAction(addAction)
+        alertController.addAction(cancelAction)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    private func addFilterWord(_ word: String?) {
+        if let word = word {
+            filterWords.append(word)
+        }
+    }
 }
 
 // MARK: - Extensions
@@ -135,7 +183,10 @@ extension ViewController: UITextFieldDelegate {
         if let text = textField.text, LinkModel.containsURL(string: text) {
             print("text \(text)")
         } else {
-            showErrorAlert(title: "Error", error: "Please, enter correct link")
+            showErrorAlert(
+                title: NSLocalizedString("error", comment: ""),
+                error: NSLocalizedString("enter_correct_link", comment: "")
+            )
         }
         view.endEditing(true)
         return false

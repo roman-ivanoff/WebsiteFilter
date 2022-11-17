@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  WebsiteFilter
+
+  Created by Roman Ivanov on 17.11.2022.
+  
+*/
+
+"website_filter" = "Website Filter";
+"enter_url" = "Enter URL";
+"add_filter_word" = "Add Filter Word";
+"enter_filter_word" = "Enter Filter Word";
+"add" = "Add";
+"cancel" = "Cancel";
+"error" = "Error";
+"enter_correct_link" = "Please, enter correct link";

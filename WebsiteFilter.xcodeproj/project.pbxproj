@@ -13,6 +13,7 @@
 		FD5AF057292575C800062C19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD5AF055292575C800062C19 /* LaunchScreen.storyboard */; };
 		FD5AF062292579B500062C19 /* LinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5AF061292579B500062C19 /* LinkModel.swift */; };
 		FD5AF06529257AA200062C19 /* UIView+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5AF06429257AA200062C19 /* UIView+Configuration.swift */; };
+		FDACA2B629263B2E00780BE4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDACA2B529263B2E00780BE4 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FD5AF058292575C800062C19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD5AF061292579B500062C19 /* LinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkModel.swift; sourceTree = "<group>"; };
 		FD5AF06429257AA200062C19 /* UIView+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Configuration.swift"; sourceTree = "<group>"; };
+		FDACA2B529263B2E00780BE4 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		FD5AF049292575C500062C19 /* WebsiteFilter */ = {
 			isa = PBXGroup;
 			children = (
+				FDACA2B429263B2200780BE4 /* Resources  */,
 				FD5AF060292579A800062C19 /* Extensions */,
 				FD5AF05F2925799D00062C19 /* Models */,
 				FD5AF05E2925769E00062C19 /* Supporting Files */,
@@ -89,6 +92,14 @@
 				FD5AF06429257AA200062C19 /* UIView+Configuration.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		FDACA2B429263B2200780BE4 /* Resources  */ = {
+			isa = PBXGroup;
+			children = (
+				FDACA2B529263B2E00780BE4 /* Localizable.strings */,
+			);
+			path = "Resources ";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD5AF057292575C800062C19 /* LaunchScreen.storyboard in Resources */,
+				FDACA2B629263B2E00780BE4 /* Localizable.strings in Resources */,
 				FD5AF054292575C800062C19 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

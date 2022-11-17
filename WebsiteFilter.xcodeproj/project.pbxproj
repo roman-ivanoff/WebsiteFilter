@@ -14,6 +14,7 @@
 		FD5AF062292579B500062C19 /* LinkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5AF061292579B500062C19 /* LinkModel.swift */; };
 		FD5AF06529257AA200062C19 /* UIView+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5AF06429257AA200062C19 /* UIView+Configuration.swift */; };
 		FDACA2B629263B2E00780BE4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDACA2B529263B2E00780BE4 /* Localizable.strings */; };
+		FDACA2B929263B6E00780BE4 /* LinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDACA2B829263B6E00780BE4 /* LinkTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		FD5AF061292579B500062C19 /* LinkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkModel.swift; sourceTree = "<group>"; };
 		FD5AF06429257AA200062C19 /* UIView+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Configuration.swift"; sourceTree = "<group>"; };
 		FDACA2B529263B2E00780BE4 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		FDACA2B829263B6E00780BE4 /* LinkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 		FD5AF049292575C500062C19 /* WebsiteFilter */ = {
 			isa = PBXGroup;
 			children = (
+				FDACA2B729263B6200780BE4 /* Custom Views */,
 				FDACA2B429263B2200780BE4 /* Resources  */,
 				FD5AF060292579A800062C19 /* Extensions */,
 				FD5AF05F2925799D00062C19 /* Models */,
@@ -100,6 +103,14 @@
 				FDACA2B529263B2E00780BE4 /* Localizable.strings */,
 			);
 			path = "Resources ";
+			sourceTree = "<group>";
+		};
+		FDACA2B729263B6200780BE4 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				FDACA2B829263B6E00780BE4 /* LinkTextField.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 				FD5AF062292579B500062C19 /* LinkModel.swift in Sources */,
 				FD5AF06529257AA200062C19 /* UIView+Configuration.swift in Sources */,
 				FD5AF04F292575C500062C19 /* ViewController.swift in Sources */,
+				FDACA2B929263B6E00780BE4 /* LinkTextField.swift in Sources */,
 				FD5AF04B292575C500062C19 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

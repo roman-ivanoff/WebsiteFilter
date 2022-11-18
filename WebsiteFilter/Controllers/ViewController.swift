@@ -41,7 +41,7 @@ class ViewController: UIViewController {
 
     // MARK: - Actions
     @objc func backAction() {
-        print("back action")
+        print(filterWords)
     }
 
     @objc func forwardAction() {
@@ -53,7 +53,10 @@ class ViewController: UIViewController {
     }
 
     @objc func showFilterWords() {
-        print(filterWords)
+        let filterWordsVC = FilterWordsViewController(filterWords: filterWords)
+        filterWordsVC.filterWords = filterWords
+
+        navigationController?.pushViewController(filterWordsVC, animated: true)
     }
 
     // MARK: - Custom methods
@@ -83,6 +86,17 @@ class ViewController: UIViewController {
             navigationController?.toolbar.tintColor = .systemIndigo
         } else {
             navigationController?.toolbar.tintColor = .black
+        }
+
+        if #available(iOS 14.0, *) {
+            navigationItem.backButtonDisplayMode = .minimal
+        } else {
+            navigationItem.backBarButtonItem = UIBarButtonItem(
+                title: "",
+                style: .plain,
+                target: nil,
+                action: nil
+            )
         }
 
         var items: [UIBarButtonItem] = []

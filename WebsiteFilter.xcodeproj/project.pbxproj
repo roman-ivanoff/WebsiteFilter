@@ -16,6 +16,7 @@
 		FDACA2B629263B2E00780BE4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FDACA2B529263B2E00780BE4 /* Localizable.strings */; };
 		FDACA2B929263B6E00780BE4 /* LinkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDACA2B829263B6E00780BE4 /* LinkTextField.swift */; };
 		FDC22F69292778C9003A43FC /* WebsiteFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC22F68292778C9003A43FC /* WebsiteFilterTests.swift */; };
+		FDC22F71292779F8003A43FC /* FilterWordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDC22F70292779F8003A43FC /* FilterWordsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		FDACA2B829263B6E00780BE4 /* LinkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkTextField.swift; sourceTree = "<group>"; };
 		FDC22F66292778C9003A43FC /* WebsiteFilterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WebsiteFilterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDC22F68292778C9003A43FC /* WebsiteFilterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebsiteFilterTests.swift; sourceTree = "<group>"; };
+		FDC22F70292779F8003A43FC /* FilterWordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterWordsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,12 +84,12 @@
 		FD5AF049292575C500062C19 /* WebsiteFilter */ = {
 			isa = PBXGroup;
 			children = (
+				FDC22F6F292779DE003A43FC /* Controllers */,
 				FDACA2B729263B6200780BE4 /* Custom Views */,
 				FDACA2B429263B2200780BE4 /* Resources  */,
 				FD5AF060292579A800062C19 /* Extensions */,
 				FD5AF05F2925799D00062C19 /* Models */,
 				FD5AF05E2925769E00062C19 /* Supporting Files */,
-				FD5AF04E292575C500062C19 /* ViewController.swift */,
 				FD5AF04A292575C500062C19 /* AppDelegate.swift */,
 			);
 			path = WebsiteFilter;
@@ -141,6 +143,15 @@
 				FDC22F68292778C9003A43FC /* WebsiteFilterTests.swift */,
 			);
 			path = WebsiteFilterTests;
+			sourceTree = "<group>";
+		};
+		FDC22F6F292779DE003A43FC /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FD5AF04E292575C500062C19 /* ViewController.swift */,
+				FDC22F70292779F8003A43FC /* FilterWordsViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -270,6 +281,7 @@
 				FD5AF06529257AA200062C19 /* UIView+Configuration.swift in Sources */,
 				FD5AF04F292575C500062C19 /* ViewController.swift in Sources */,
 				FDACA2B929263B6E00780BE4 /* LinkTextField.swift in Sources */,
+				FDC22F71292779F8003A43FC /* FilterWordsViewController.swift in Sources */,
 				FD5AF04B292575C500062C19 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

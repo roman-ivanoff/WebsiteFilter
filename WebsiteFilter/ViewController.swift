@@ -154,7 +154,10 @@ class ViewController: UIViewController {
         let addAction = UIAlertAction(
             title: NSLocalizedString("add", comment: ""),
             style: .default
-        ) { _ in
+        ) { [weak self] _ in
+            guard let self else {
+                return
+            }
             let textField = alertController.textFields
             if let word = textField?[0].text {
                 self.addFilterWord(word)

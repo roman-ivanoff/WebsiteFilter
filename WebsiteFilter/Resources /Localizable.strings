@@ -14,3 +14,6 @@
 "cancel" = "Cancel";
 "error" = "Error";
 "enter_correct_link" = "Please, enter correct link";
+"at_least_two_characters_and_no_spaces" = "Please, enter at least 2 characters and no spaces";
+"ok" = "OK";
+"filter_words" = "Filter Words";

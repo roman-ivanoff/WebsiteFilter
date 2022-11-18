@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
     // MARK: - Properties
     var filterWords: [String] = []
+    let linkModel = LinkModel()
 
     // MARK: - Lifecycle methods
     override func viewDidLoad() {
@@ -131,13 +132,23 @@ class ViewController: UIViewController {
         toolbarItems = items
     }
 
-    private func showErrorAlert(title: String, error: String) {
+    private func showErrorAlert(title: String, error: String, callTextFieldAlert: Bool = false) {
         let dialogMessage = UIAlertController(
             title: title,
             message: error,
             preferredStyle: .alert
         )
-        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        var okAction: UIAlertAction
+        if callTextFieldAlert {
+            okAction = UIAlertAction(
+                title: NSLocalizedString("ok", comment: ""),
+                style: .cancel,
+                handler: { _ in
+                self.showTextFieldAlert()
+            })
+        } else {
+            okAction = UIAlertAction(title: NSLocalizedString("ok", comment: ""), style: .cancel)
+        }
         dialogMessage.addAction(okAction)
         present(dialogMessage, animated: true)
     }
@@ -183,7 +194,7 @@ class ViewController: UIViewController {
 extension ViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let text = textField.text, LinkModel.containsURL(string: text) {
+        if let text = textField.text, linkModel.containsURL(string: text) {
             print("text \(text)")
         } else {
             showErrorAlert(

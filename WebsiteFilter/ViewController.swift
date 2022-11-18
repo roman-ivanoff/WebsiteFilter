@@ -169,9 +169,17 @@ class ViewController: UIViewController {
             guard let self else {
                 return
             }
+
             let textField = alertController.textFields
-            if let word = textField?[0].text {
+            if let word = textField?[0].text,
+               self.addFilter(string: word) {
                 self.addFilterWord(word)
+            } else {
+                self.showErrorAlert(
+                    title: NSLocalizedString("error", comment: ""),
+                    error: NSLocalizedString("at_least_two_characters_and_no_spaces", comment: ""),
+                    callTextFieldAlert: true
+                )
             }
         }
 
@@ -187,6 +195,10 @@ class ViewController: UIViewController {
         if let word = word {
             filterWords.append(word)
         }
+    }
+
+    private func addFilter(string: String) -> Bool {
+        return linkModel.containsAtLeastTwoCharacters(string) && !linkModel.containsSpace(string)
     }
 }
 

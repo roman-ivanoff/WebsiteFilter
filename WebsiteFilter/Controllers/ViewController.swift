@@ -6,20 +6,22 @@
 //
 
 import UIKit
+import WebKit
 
 class ViewController: UIViewController {
     // MARK: - UIViews
     var linkTextField: LinkTextField!
+    @objc var webView: WKWebView!
 
     // MARK: - Properties
     var filterWords: [String] = []
     let linkModel = LinkModel()
+    var canGoBackObserver: NSKeyValueObservation?
+    var canGoForwardObserver: NSKeyValueObservation?
 
     // MARK: - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = .white
 
         if #available(iOS 13, *) {
             view.backgroundColor = .systemBackground
@@ -41,11 +43,15 @@ class ViewController: UIViewController {
 
     // MARK: - Actions
     @objc func backAction() {
-        print(filterWords)
+        if webView.canGoBack {
+            webView.goBack()
+        }
     }
 
     @objc func forwardAction() {
-        print("forward action")
+        if webView.canGoForward {
+            webView.goForward()
+        }
     }
 
     @objc func addFilterAction() {
@@ -63,6 +69,7 @@ class ViewController: UIViewController {
     private func createAndSetupLinkTextField() {
         linkTextField = LinkTextField(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 44))
         linkTextField.delegate = self
+        linkTextField.accessibilityIdentifier = "linkTextField"
     }
 
     private func addSubviewsToView() {
@@ -101,26 +108,6 @@ class ViewController: UIViewController {
 
         var items: [UIBarButtonItem] = []
 
-        items.append(
-            UIBarButtonItem(
-                image: UIImage(named: "left"),
-                style: .plain,
-                target: self,
-                action: #selector(backAction)
-            )
-        )
-
-        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
-
-        items.append(
-            UIBarButtonItem(
-                image: UIImage(named: "right"),
-                style: .plain,
-                target: self,
-                action: #selector(forwardAction)
-            )
-        )
-
         items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
 
         items.append(
@@ -142,6 +129,8 @@ class ViewController: UIViewController {
                 action: #selector(showFilterWords)
             )
         )
+
+        items.append(UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil))
 
         toolbarItems = items
     }
@@ -214,6 +203,41 @@ class ViewController: UIViewController {
     private func addFilter(string: String) -> Bool {
         return linkModel.containsAtLeastTwoCharacters(string) && !linkModel.containsSpace(string)
     }
+
+    private func addHttpsToLink(link: String) -> String {
+        return linkModel.startsWithHttps(link) ? link : linkModel.addHttpsToString(link)
+    }
+
+    private func createAndSetupBackForwardButtons() {
+        if #available(iOS 13, *) {
+            navigationController?.navigationBar.tintColor = .systemIndigo
+        } else {
+            navigationController?.navigationBar.tintColor = .black
+        }
+
+        let backButton = UIBarButtonItem(
+            image: UIImage(named: "left"),
+            style: .plain,
+            target: self,
+            action: #selector(backAction)
+        )
+        let forwardButton = UIBarButtonItem(
+            image: UIImage(named: "right"),
+            style: .plain,
+            target: self,
+            action: #selector(forwardAction)
+        )
+
+        navigationItem.setLeftBarButtonItems([backButton, forwardButton], animated: true)
+
+        if let back = navigationItem.leftBarButtonItems?[0] {
+            back.isEnabled = false
+        }
+
+        if let forward = navigationItem.leftBarButtonItems?[1] {
+            forward.isEnabled = false
+        }
+    }
 }
 
 // MARK: - Extensions
@@ -221,7 +245,35 @@ extension ViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text, linkModel.containsURL(string: text) {
-            print("text \(text)")
+            webView = WKWebView()
+            webView.navigationDelegate = self
+            linkTextField.removeFromSuperview()
+            view.addSubview(webView)
+            webView.anchor(
+                top: view.layoutMarginsGuide.topAnchor,
+                bottom: view.layoutMarginsGuide.bottomAnchor,
+                leading: view.layoutMarginsGuide.leadingAnchor,
+                trailing: view.layoutMarginsGuide.trailingAnchor,
+                leadingConstant: -16,
+                trailingConstant: 16
+            )
+            webView.accessibilityIdentifier = "webWiew"
+
+            let url = URL(string: addHttpsToLink(link: text))!
+
+            webView.load(URLRequest(url: url))
+            webView.allowsBackForwardNavigationGestures = true
+            canGoBackObserver = observe(\.webView?.canGoBack, changeHandler: { _, _ in
+                if let backButton = self.navigationItem.leftBarButtonItems?[0] {
+                    backButton.isEnabled = self.webView.canGoBack
+                }
+            })
+            canGoForwardObserver = observe(\.webView?.canGoForward, changeHandler: { _, _ in
+                if let forwardButton = self.navigationItem.leftBarButtonItems?[1] {
+                    forwardButton.isEnabled = self.webView.canGoForward
+                }
+            })
+            createAndSetupBackForwardButtons()
         } else {
             showErrorAlert(
                 title: NSLocalizedString("error", comment: ""),
@@ -230,5 +282,27 @@ extension ViewController: UITextFieldDelegate {
         }
         view.endEditing(true)
         return false
+    }
+}
+
+// MARK: - WKNavigationDelegate
+extension ViewController: WKNavigationDelegate {
+    func webView(
+        _ webView: WKWebView,
+        decidePolicyFor navigationAction: WKNavigationAction,
+        decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+    ) {
+        if let urlStr = navigationAction.request.url?.absoluteString {
+
+            if filterWords.map({ $0.lowercased() }).filter({ urlStr.lowercased().range(of: $0) != nil }).count != 0 {
+                showErrorAlert(
+                    title: NSLocalizedString("error", comment: ""),
+                    error: NSLocalizedString("error_link_blocked", comment: "")
+                )
+                decisionHandler(.cancel)
+            } else {
+                decisionHandler(.allow)
+            }
+        }
     }
 }

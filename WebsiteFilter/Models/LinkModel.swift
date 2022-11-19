@@ -24,4 +24,12 @@ class LinkModel {
     func containsSpace(_ string: String) -> Bool {
         return string.trimmingCharacters(in: .whitespacesAndNewlines).contains(" ")
     }
+
+    func startsWithHttps(_ string: String) -> Bool {
+        return string.starts(with: "https://")
+    }
+
+    func addHttpsToString(_ string: String) -> String {
+        return "https://" + string
+    }
 }

@@ -50,6 +50,7 @@ class FilterWordsViewController: UIViewController {
         tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.accessibilityIdentifier = "filterWordsTableView"
     }
 
     private func addSubviewsToView() {

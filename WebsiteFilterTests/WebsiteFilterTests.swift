@@ -44,4 +44,15 @@ final class WebsiteFilterTests: XCTestCase {
         XCTAssertFalse(sut.containsSpace("google.com"))
     }
 
+    func testStringStartsWithHttps() {
+        XCTAssertTrue(sut.startsWithHttps("https://google.com"))
+    }
+
+    func testStringDoesNotStartsWithHttps() {
+        XCTAssertFalse(sut.startsWithHttps("google.com"))
+    }
+
+    func testAddHttpsToString() {
+        XCTAssertEqual("https://google.com", sut.addHttpsToString("google.com"))
+    }
 }

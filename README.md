@@ -19,3 +19,5 @@ Create an application with a custom “browser”.
   - WebKit
   - MVC
   - Tests
+
+![](https://github.com/roman-ivanoff/WebsiteFilter/blob/main/1.gif)
